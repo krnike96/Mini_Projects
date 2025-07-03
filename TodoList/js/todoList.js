@@ -8,12 +8,18 @@ document.querySelector('.js-add-button').addEventListener('click',()=>{
 function addTodo(){
     let todoInput = document.querySelector('.js-todo-input').value;
     todoListArray.push(todoInput);
-    let html = `<p>${todoInput} <button>Delete</button></p>
-                
-    `;
-    todoHTML += html;
-    document.querySelector('.js-show-todo').innerHTML = todoHTML;
-    todoInput = "";
+    todoHTML = "";
+    renderTodo();
+    document.querySelector('.js-todo-input').value = "";
+    console.log(todoListArray);
+}
 
+function renderTodo(){
+    let showDiv = document.querySelector('.js-show-todo');
+    todoListArray.forEach(todo=>{
+        const html = `<p>${todo}<button>Delete</button></p>`;
+        todoHTML += html; 
+    })
+    showDiv.innerHTML = todoHTML;
     console.log(todoHTML);
 }
