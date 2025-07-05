@@ -15,24 +15,38 @@ function addTodo() {
         document.querySelector('.js-todo-input').value = "";
         document.querySelector('.js-todoDate-input').value = "";
         console.log(todoListArray);
-    }else{
+    } else {
         alert("Either Todo or Date is invalid!");
     }
 }
 
 function renderTodo() {
+    //createShowDiv();
     let showDiv = document.querySelector('.js-show-todo');
     todoListArray.forEach((todo, index) => {
         const { todoInput, todoDateInput } = todo;
-        const html = `<p>${todoInput}</p>
-        <p>${todoDateInput}</p>
+        const html = `<div class="css-all css-todo">${todoInput}</div>
+        <div class="css-all css-date">${todoDateInput}</div>
         <button onclick="
             todoListArray.splice(${index},1);
             todoHTML = '';
             renderTodo();
-        " class="js-delete-button">Delete</button>`;
+        " class="js-delete-button css-all css-delete-button">Delete</button>`;
         todoHTML += html;
     })
     showDiv.innerHTML = todoHTML;
     //console.log(todoHTML);
 }
+/*
+*(Experimental)
+function createShowDiv(){
+    const flag = document.querySelector('.js-show-todo');
+    if(flag){
+        flag.remove()
+    }
+    const newShowDiv = document.createElement('div');
+    newShowDiv.classList.add('js-show-todo','css-all','css-show-todo');
+
+    document.querySelector('.js-add-button').insertAdjacentElement("afterend",newShowDiv);
+}
+*/
